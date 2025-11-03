@@ -10,27 +10,38 @@ let todos = [];
         const quoteContainer = document.getElementById('quoteContainer');
         const refreshQuoteBtn = document.getElementById('refreshQuote');
 
-        // Use in-memory storage instead of localStorage
-        const storage = {
-            data: null,
-            get: function() {
-                return this.data || [];
-            },
-            set: function(data) {
-                this.data = data;
-            }
-        };
+                // Use localStorage for persistence (will survive page refresh)
+                const STORAGE_KEY = 'todos';
 
-        // Load todos from memory
-        function loadTodos() {
-            todos = storage.get();
-            renderTodos();
-        }
+                const storage = {
+                    get: function() {
+                        try {
+                            const raw = localStorage.getItem(STORAGE_KEY);
+                            return raw ? JSON.parse(raw) : [];
+                        } catch (e) {
+                            console.error('Failed to read todos from localStorage', e);
+                            return [];
+                        }
+                    },
+                    set: function(data) {
+                        try {
+                            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+                        } catch (e) {
+                            console.error('Failed to save todos to localStorage', e);
+                        }
+                    }
+                };
 
-        // Save todos to memory
-        function saveTodos() {
-            storage.set(todos);
-        }
+                // Load todos from storage
+                function loadTodos() {
+                    todos = storage.get();
+                    renderTodos();
+                }
+
+                // Save todos to storage
+                function saveTodos() {
+                    storage.set(todos);
+                }
 
         // Add new todo
         function addTodo() {

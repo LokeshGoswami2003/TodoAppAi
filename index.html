@@ -1,43 +1,48 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Todo App</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="container">
-        <h1>✓ My Todos</h1>
-        
-        <div class="input-section">
-            <input type="text" id="todoInput" placeholder="What needs to be done?" />
-            <button id="addBtn">Add</button>
+      <h1>✓ My Todos</h1>
+
+      <div class="input-section">
+        <input
+          type="text"
+          id="todoInput"
+          placeholder="What needs to be done?"
+        />
+        <button id="addBtn">Add</button>
+      </div>
+
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="active">Active</button>
+        <button class="filter-btn" data-filter="completed">Completed</button>
+      </div>
+
+      <ul id="todoList"></ul>
+
+      <div class="stats">
+        <span id="todoCount">0 items left</span>
+      </div>
+
+      <button class="clear-completed" id="clearCompleted" style="display: none">
+        Clear Completed
+      </button>
+
+      <div class="quote-section">
+        <div id="quoteContainer">
+          <p class="quote-loading">Loading inspiration...</p>
         </div>
-
-        <div class="filters">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="active">Active</button>
-            <button class="filter-btn" data-filter="completed">Completed</button>
-        </div>
-
-        <ul id="todoList"></ul>
-
-        <div class="stats">
-            <span id="todoCount">0 items left</span>
-        </div>
-
-        <button class="clear-completed" id="clearCompleted" style="display: none;">Clear Completed</button>
-
-        <div class="quote-section">
-            <div id="quoteContainer">
-                <p class="quote-loading">Loading inspiration...</p>
-            </div>
-            <button class="refresh-quote" id="refreshQuote">New Quote</button>
-        </div>
+        <button class="refresh-quote" id="refreshQuote">New Quote</button>
+      </div>
     </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
